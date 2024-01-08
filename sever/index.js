@@ -7,6 +7,8 @@ const router = require("./routes");
 
 const app = express();
 
+require('./db.js');
+
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
@@ -24,6 +26,10 @@ app.use("/", router);
 
 
 const PORT = process.env.PORT || 3001;
+const {
+  DB_USER, DB_PASSWORD, DB_HOST,
+} = process.env;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log(DB_USER, DB_PASSWORD, DB_HOST);
 });

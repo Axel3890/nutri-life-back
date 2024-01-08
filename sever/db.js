@@ -7,6 +7,7 @@ const {
 } = process.env;
 
 
+
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/nutrilife`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
@@ -29,6 +30,16 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
+// ...
+
+// Sincronizar las relaciones con la base de datos
+sequelize.sync({ force: true }) // Ajusta a true si deseas recrear las tablas en cada reinicio
+  .then(() => {
+    console.log('Base de datos y relaciones sincronizadas');
+  })
+  .catch((error) => {
+    console.error('Error al sincronizar la base de datos:', error);
+  });
 
 
 // En sequelize.models están todos los modelos importados como propiedades
@@ -42,7 +53,6 @@ const { User, Favoritos } = sequelize.models;
 
 User.belongsToMany(Favoritos, { through: 'FavUser' });
 
-// En el modelo 'Temperaments'
 Favoritos.belongsToMany(User, { through: 'FavUser' });
 
 
