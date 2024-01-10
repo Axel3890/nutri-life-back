@@ -7,7 +7,7 @@ const API_URL = 'https://api.edamam.com/api/recipes/v2';
 
 async function getDetail(req, res) {
     const idDetail = req.params.idDetail;
-    console.log(idDetail);
+
 
     try {
         const response = await axios.get(
