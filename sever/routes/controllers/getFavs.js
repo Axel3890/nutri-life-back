@@ -1,7 +1,8 @@
 const { Favoritos } = require("../../db");
 const { Op } = require('sequelize');
 async function getFavs (req,res) {
-    const  { email } = req.body
+    const  { email } = req.query
+    console.log(email)
     try {
       // Realiza la solicitud GET con Axios
       const respuesta = await Favoritos.findAll({
