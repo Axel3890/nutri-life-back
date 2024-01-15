@@ -21,12 +21,11 @@ async function getDetail(req, res) {
             label,
             image,
             ingredients,
-            calories,
+            calories: Math.floor(calories),
             totalTime,
             instructionLines,
             idDetail
         };
-
         res.json(simplifiedRecipe);
     } catch (error) {
         // Handle error

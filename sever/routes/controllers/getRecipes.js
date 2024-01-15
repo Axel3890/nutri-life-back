@@ -17,7 +17,7 @@ async function getRecipes(req, res){
                 label: recipe.label,
                 image: recipe.image,
                 ingredients: recipe.ingredientLines,
-                calories: recipe.calories,
+                calories: Math.floor(recipe.calories),
                 time: recipe.totalTime,
                 instruccions: recipe.instructionLines,
                 id: hit._links.self.href.split('v2/')[1].split('?')[0],
