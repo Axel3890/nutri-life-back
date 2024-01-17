@@ -13,7 +13,6 @@ async function getFavs (req,res) {
         },
 
     });
-    console.log(respuesta)
     res.status(200).json(respuesta);
     } catch (error) {
       console.error('Error al obtener los favoritos:', error);
