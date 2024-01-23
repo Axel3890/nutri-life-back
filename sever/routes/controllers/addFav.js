@@ -3,7 +3,6 @@ const { Favoritos } = require("../../db");
 const addFav = async (req, res) => {
 
   try {
-    // Obtén los datos del cuerpo de la solicitud
     const { email, recetaID } = req.body;
 
     // Crea un nuevo favorito en la base de datos
