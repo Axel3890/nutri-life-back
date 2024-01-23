@@ -6,12 +6,11 @@ const API_URL = 'https://api.edamam.com/api/recipes/v2';
 
 
 async function getDetail(req, res) {
-    const idDetail = req.params.idDetail;
-
+    const id = req.params.id;
 
     try {
         const response = await axios.get(
-            `https://api.edamam.com/api/recipes/v2/${idDetail}?type=public&app_id=${APP_ID}&app_key=${APP_KEY}`
+            `https://api.edamam.com/api/recipes/v2/${id}?type=public&app_id=${APP_ID}&app_key=${APP_KEY}`
         );
         
         const recipeData = response.data.recipe;
@@ -24,12 +23,12 @@ async function getDetail(req, res) {
             calories: Math.floor(calories),
             totalTime,
             instructionLines,
-            idDetail
+            id
         };
         res.json(simplifiedRecipe);
     } catch (error) {
         // Handle error
-        console.error(error);
+
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }

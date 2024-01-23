@@ -33,7 +33,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // ...
 
 // Sincronizar las relaciones con la base de datos
-sequelize.sync({ force: true }) // Ajusta a true si deseas recrear las tablas en cada reinicio
+sequelize.sync({ force: false }) // Ajusta a true si deseas recrear las tablas en cada reinicio
   .then(() => {
     console.log('Base de datos y relaciones sincronizadas');
   })
